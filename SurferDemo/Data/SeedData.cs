@@ -8,8 +8,6 @@ namespace SurferDemo.Data
     {
         private const string FILE_PATH = "Data/Datasheet.xlsx";
 
-
-
         public static void GetDataFromExcel(IServiceProvider serviceProvider)
         {
             var boards = new List<Board>();
@@ -43,6 +41,7 @@ namespace SurferDemo.Data
                     boards.Add(board);
                 }
             }
+
             using (var context = new SurferDemoContext(serviceProvider.GetRequiredService<DbContextOptions<SurferDemoContext>>()))
             {
                 if (context.Board.Any()) { return; }
@@ -52,7 +51,6 @@ namespace SurferDemo.Data
                 }
                 context.SaveChanges();
             }
-
         }
     }
 }
